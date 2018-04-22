@@ -1,0 +1,123 @@
+<!-- Forms
+     ================================================== -->
+
+
+<div class="bs-docs-section">
+  <div class="row">
+    <div class="col-lg-10">
+      <h1 id="forms">Hotel Admin</h1>
+    </div>
+    <div class="col-lg-1">
+    </div>
+    <div class="col-lg-1">
+      <button type="button" (click)="showNewHotel()" [style.visibility]='newButtonShowHide'
+              class="btn btn-outline-primary">New
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Tables
+    ================================================== -->
+
+
+  <div class="row" [style.visibility]='listHotelsShowHide'>
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1 id="tables">List of Hotels</h1>
+      </div>
+
+      <div class="bs-component">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Number of Rooms</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let hotel of hotels">
+          <tr class="table-primary">
+            <th scope="row">{{hotel.name}}</th>
+            <td>{{hotel.rooms}}</td>
+            <td>{{hotel.phone}}</td>
+            <td>{{hotel.email}}</td>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm" (click)='checkInformation(hotel) '>View/Modify
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div><!-- /example -->
+    </div>
+  </div>
+
+
+  <div class="row" [style.visibility]='newModifyShowHide'>
+    <div class="col-lg-6">
+      <div class="bs-component">
+        <form>
+          <fieldset>
+            <legend>View/New/Modify Hotel</legend>
+            <div class="form-group">
+              <label for="inputHotelName">Hotel's Name</label>
+              <input type="text" class="form-control" id="inputHotelName" aria-describedby="emailHelp"
+                     [(ngModel)]="hotelTmp.name"
+                     [ngModelOptions]="{standalone: true}"
+                     placeholder="Whole name">
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Address</label>
+              <input type="text" class="form-control" id="inputAddress" aria-describedby="emailHelp"
+                     [(ngModel)]="hotelTmp.address"
+                     [ngModelOptions]="{standalone: true}"
+                     placeholder="Street number and zip code">
+            </div>
+            <div class="form-group">
+              <label for="exampleSelect1">Quantity of Single Rooms</label>
+              <select class="form-control" id="exampleSelect1"
+                      [(ngModel)]="hotelTmp.rooms"
+                      [ngModelOptions]="{standalone: true}"
+              >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputDescription">Description</label>
+              <textarea class="form-control" id="inputDescription" rows="3"
+                        [(ngModel)]="hotelTmp.description"
+                        [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="inputPhoneNumber">Phone Number</label>
+              <input type="text" class="form-control" id="inputPhoneNumber" aria-describedby="emailHelp"
+                     [(ngModel)]="hotelTmp.phone"
+                     [ngModelOptions]="{standalone: true}"
+                     placeholder="+593 99273 7614">
+            </div>
+
+            <div class="form-group">
+              <label for="inputEmailAddress">Email address</label>
+              <input type="email" class="form-control" id="inputEmailAddress" aria-describedby="emailHelp"
+                     [(ngModel)]="hotelTmp.email"
+                     [ngModelOptions]="{standalone: true}"
+                     placeholder="Enter email">
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="addNewHotel()" *ngIf="isNew === true">Add</button>
+            <button type="submit" class="btn btn-primary" (click)="modifyHotel()" *ngIf="isNew === false">Modify
+            </button>
+            <button type="button" class="btn btn-danger" (click)="hideNewHotel()">Cancel</button>
+          </fieldset>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

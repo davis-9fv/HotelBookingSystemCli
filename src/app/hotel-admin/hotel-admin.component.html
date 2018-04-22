@@ -41,8 +41,8 @@
           <tbody *ngFor="let hotel of hotels">
           <tr class="table-primary">
             <th scope="row">{{hotel.name}}</th>
-            <td>{{hotel.rooms}}</td>
-            <td>{{hotel.phone}}</td>
+            <td>{{hotel.numberRooms}}</td>
+            <td>{{hotel.phoneNumber}}</td>
             <td>{{hotel.email}}</td>
             <td>
               <button type="button" class="btn btn-primary btn-sm" (click)='checkInformation(hotel) '>View/Modify
@@ -79,7 +79,7 @@
             <div class="form-group">
               <label for="exampleSelect1">Quantity of Single Rooms</label>
               <select class="form-control" id="exampleSelect1"
-                      [(ngModel)]="hotelTmp.rooms"
+                      [(ngModel)]="hotelTmp.numberRooms"
                       [ngModelOptions]="{standalone: true}"
               >
                 <option>1</option>
@@ -98,7 +98,7 @@
             <div class="form-group">
               <label for="inputPhoneNumber">Phone Number</label>
               <input type="text" class="form-control" id="inputPhoneNumber" aria-describedby="emailHelp"
-                     [(ngModel)]="hotelTmp.phone"
+                     [(ngModel)]="hotelTmp.phoneNumber"
                      [ngModelOptions]="{standalone: true}"
                      placeholder="+593 99273 7614">
             </div>
@@ -110,6 +110,7 @@
                      [ngModelOptions]="{standalone: true}"
                      placeholder="Enter email">
             </div>
+
             <button type="submit" class="btn btn-primary" (click)="addNewHotel()" *ngIf="isNew === true">Add</button>
             <button type="submit" class="btn btn-primary" (click)="modifyHotel()" *ngIf="isNew === false">Modify
             </button>

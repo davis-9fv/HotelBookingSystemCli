@@ -15,40 +15,14 @@ export class HotelAdminComponent implements OnInit {
   newModifyShowHide = 'collapse';
   isNew = true;
   hotels: IHotel[];
-
-  /**
-   hotel1 = {
-    number: '1', name: 'Francisco Hotel', phone: '+993 9230 2392', address: 'Juan Arauz y Vicente Hereda'
-    , email: 'fran@hotmail.com', rooms: 3, description: 'descripont'
-  };
-
-   hotel2 = {
-    number: '1', name: 'Francisco Hotel', phone: '+993 9230 2392', address: 'Juan Arauz y Vicente Hereda'
-    , email: 'fran@hotmail.com', rooms: 3, description: 'descripont'
-  };
-
-   hotels: Array<Object> = [this.hotel1, this.hotel2];
-   **/
   hotelTmp;
 
   constructor(private hotelAdminService: HotelAdminService) {
     this.initHotelTmp();
-    console.log("asdf")
-    console.log(hotelAdminService.retrieveHotels());
-
-    hotelAdminService.retrieveHotels().subscribe((hotels: IHotel[]) => {
-        this.hotels = hotels;
-        console.log("----" + this.hotels[0].description);
-      },
-      error => {
-        console.log("error   " + error);
-      });
-
-
+    this.retrieveHotels();
   }
 
   ngOnInit() {
-
   }
 
   showNewHotel() {
@@ -63,12 +37,11 @@ export class HotelAdminComponent implements OnInit {
     this.newButtonShowHide = 'visible';
     this.listHotelsShowHide = 'visible';
     this.newModifyShowHide = 'collapse';
-    // this.initHotelTmp();
   }
 
   checkInformation(hotel) {
     this.showNewHotel();
-    this.hotelTmp = hotel;
+    this.hotelTmp = Object.create(hotel);
     console.log(hotel);
     this.isNew = false;
   }
@@ -78,31 +51,48 @@ export class HotelAdminComponent implements OnInit {
       phoneNumber: '', name: '', phone: '', address: ''
       , email: '', numberRooms: 1, description: ''
     };
-
-
   }
 
   addNewHotel() {
     this.hotelAdminService.registerHotel(this.hotelTmp).subscribe(data => {
+      console.log("Output from srv--------");
       console.log(data);
+      //this.hotels.push(this.hotelTmp);
+      this.retrieveHotels();
     }, error => {
       console.log(error);
-      console.log('hiba');
+      this.retrieveHotels();
     });
-
-
-    this.hotels.push(this.hotelTmp);
-    console.log(this.hotelTmp);
     this.initHotelTmp();
     this.hideNewHotel();
+
 
   }
 
   modifyHotel() {
-    this.hideNewHotel();
+    this.hotelAdminService.modifyHotel(this.hotelTmp).subscribe((hotels: IHotel[]) => {
+        this.retrieveHotels();
+        console.log("Modfy:" + this.hotelTmp._id);
+        this.hideNewHotel();
+      },
+      error => {
+        console.log("error   " + error);
+      });
+
+
   }
 
+  retrieveHotels() {
+    this.hotelAdminService.retrieveHotels().subscribe((hotels: IHotel[]) => {
+        this.hotels = hotels;
+        console.log("----");
+        console.log(this.hotels);
+      },
+      error => {
+        console.log("error   " + error);
+      });
 
+  }
 }
 
 export interface IHotel {

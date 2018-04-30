@@ -12,13 +12,15 @@ import {MainComponent} from './main/main.component';
 import {HotelAdminComponent} from './hotel-admin/hotel-admin.component';
 
 import {HotelAdminService} from './services/hotel-admin.service';
+import { HotelsComponent } from './hotels/hotels.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    HotelAdminComponent
+    HotelAdminComponent,
+    HotelsComponent
   ],
   imports: [
     BrowserModule,

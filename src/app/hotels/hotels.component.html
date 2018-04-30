@@ -1,0 +1,74 @@
+
+<div class="bs-docs-section">
+
+  <!-- Search fields
+    ================================================== -->
+
+  <div class="row">
+    <div class="col-lg-10">
+      <h1 id="forms">Search hotels</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="form-group">
+        <label for="date_in">Check-in date</label>
+        <input type="date" class="form-control" id="date_in">
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="form-group">
+        <label for="date_out">Check-out date</label>
+        <input type="date" class="form-control" id="date_out">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+      <button type="button" (click)="searchHotels()" [style.visibility]='searchButtonShowHide'
+              class="btn btn-outline-primary">Search
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Tables
+    ================================================== -->
+
+  <div class="row" [style.visibility]='listHotelsShowHide'>
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1 id="tables">List of Hotels</h1>
+      </div>
+
+      <div class="bs-component">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Number of Rooms</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let hotel of hotels">
+          <tr class="table-primary">
+            <th scope="row">{{hotel.name}}</th>
+            <td>{{hotel.numberRooms}}</td>
+            <td>{{hotel.phoneNumber}}</td>
+            <td>{{hotel.email}}</td>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm" (click)='checkInformation(hotel) '>View/Modify
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div><!-- /example -->
+    </div>
+
+</div>

@@ -13,6 +13,7 @@ import {HotelAdminComponent} from './hotel-admin/hotel-admin.component';
 
 import {HotelAdminService} from './services/hotel-admin.service';
 import { HotelsComponent } from './hotels/hotels.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { HotelsComponent } from './hotels/hotels.component';
     AppComponent,
     MainComponent,
     HotelAdminComponent,
-    HotelsComponent
+    HotelsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -7,13 +8,63 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  user = {
+    username: "",
+    password: ""
+  }
+
+  username
+  password
+
+  usernameR
+  passwordR
+  passwordR2
+
+  constructor(private userService: UserService) {
+    this.username = "";
+    this.password = "";
+
+    this.usernameR = "";
+    this.passwordR = "";
+    this.passwordR2 = "";
+  }
 
   ngOnInit() {
   }
+
   login() {
-  }
-  registerUser() {
+    console.log(this.user);
+    this.userService.login(this.user).subscribe(data => {
+      console.log("Output from srv--------");
+      console.log("Success: " + data);
+    }, error => {
+      console.log("error:: " + error);
+    });
+
+
   }
 
+  showRegister() {
+
+  }
+
+  registerUser() {
+    this.user.username = this.usernameR
+    this.user.password = this.passwordR
+    console.log(this.user);
+    this.userService.register(this.user).subscribe(data => {
+      console.log("Output from srv--------");
+      console.log("Success: " + data);
+    }, error => {
+      console.log("error:: " + error);
+    });
+  }
+
+
+}
+
+export interface IUser {
+  _id: string;
+  username: string;
+  password: string;
 }

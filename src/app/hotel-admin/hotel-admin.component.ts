@@ -78,8 +78,6 @@ export class HotelAdminComponent implements OnInit {
       error => {
         console.log("error   " + error);
       });
-
-
   }
 
   retrieveHotels() {

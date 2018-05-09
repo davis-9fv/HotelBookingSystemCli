@@ -34,12 +34,15 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log(this.user);
+    this.userService.login2()
+    /*
     this.userService.login(this.user).subscribe(data => {
       console.log("Output from srv--------");
       console.log("Success: " + data);
     }, error => {
       console.log("error:: " + error);
     });
+    */
 
 
   }

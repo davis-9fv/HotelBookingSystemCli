@@ -14,6 +14,7 @@ import {HotelAdminComponent} from './hotel-admin/hotel-admin.component';
 import {HotelAdminService} from './services/hotel-admin.service';
 import { HotelsComponent } from './hotels/hotels.component';
 import { LoginComponent } from './login/login.component';
+import {UserService} from "./services/user.service";
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [HotelAdminService],
+  providers: [HotelAdminService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

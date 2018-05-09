@@ -8,6 +8,8 @@ import {UserService} from "../services/user.service";
 })
 export class LoginComponent implements OnInit {
 
+  registerShowHide = 'collapse';
+
   user = {
     username: "",
     password: ""
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   showRegister() {
-
+    this.registerShowHide = 'visible';
   }
 
   registerUser() {
@@ -58,6 +60,7 @@ export class LoginComponent implements OnInit {
     this.userService.register(this.user).subscribe(data => {
       console.log("Output from srv--------");
       console.log("Success: " + data);
+      this.registerShowHide = 'collapse';
     }, error => {
       console.log("error:: " + error);
     });

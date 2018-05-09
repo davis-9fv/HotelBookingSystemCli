@@ -29,4 +29,23 @@ export class UserService {
 
   }
 
+  login2() {
+    console.log("login2")
+    const body = new URLSearchParams();
+    body.set('username', "hola");
+    body.set('password', "hola2");
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    const req = this.http2.post('http://localhost:5000/rest/user/login',
+      body.toString(), {headers: headers}).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured" + err);
+      }
+    );
+
+  }
+
 }
